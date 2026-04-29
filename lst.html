@@ -3,26 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Strength Indicator</title>
-    
+    <title>Password Lab Pro</title>
+
     <link rel="stylesheet" href="./ls2.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Password Strength Indicator</h1>
-        <input 
-            type="password" 
-            id="inputTest" 
-            placeholder="Enter your password" 
-            aria-describedby="passwordFeedback"
-        >
-        <div id="block_check" role="region" aria-live="polite">
-            <div class="section" id="section1"></div>
-            <div class="section" id="section2"></div>
-            <div class="section" id="section3"></div>
-        </div>
-        <p id="passwordFeedback" class="feedback"></p>
-    </div>
+    <main class="app-shell">
+        <section class="panel">
+            <div class="top-row">
+                <div>
+                    <h1 data-i18n="appTitle">Password Lab Pro</h1>
+                    <p class="subtitle" data-i18n="subtitle">Security-focused password strength analyzer</p>
+                </div>
+                <div class="lang-switch" role="group" aria-label="Language switcher">
+                    <button type="button" class="lang-btn active" data-lang="en">EN</button>
+                    <button type="button" class="lang-btn" data-lang="de">DE</button>
+                    <button type="button" class="lang-btn" data-lang="uk">UKR</button>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <input
+                    type="password"
+                    id="inputTest"
+                    placeholder="Try a password..."
+                    data-i18n-placeholder="passwordPlaceholder"
+                    aria-describedby="passwordFeedback"
+                    autocomplete="off"
+                >
+                <button type="button" class="btn ghost" id="toggleVisibility" data-i18n="showBtn">Show</button>
+            </div>
+
+            <div class="actions-row">
+                <button type="button" class="btn" id="generatePassword" data-i18n="generateBtn">Generate strong password</button>
+                <button type="button" class="btn ghost" id="copyPassword" data-i18n="copyBtn">Copy</button>
+            </div>
+
+            <div class="meter-wrap" role="region" aria-live="polite" aria-label="Password strength meter">
+                <div class="section" id="section1"></div>
+                <div class="section" id="section2"></div>
+                <div class="section" id="section3"></div>
+                <div class="section" id="section4"></div>
+                <div class="section" id="section5"></div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat"><span data-i18n="scoreLabel">Score</span><strong id="scoreValue">0/100</strong></div>
+                <div class="stat"><span data-i18n="entropyLabel">Entropy</span><strong id="entropyValue">0 bits</strong></div>
+                <div class="stat"><span data-i18n="crackLabel">Crack time</span><strong id="crackValue">Instant</strong></div>
+            </div>
+
+            <p id="passwordFeedback" class="feedback"></p>
+
+            <ul class="checks" id="checksList">
+                <li id="checkLength" data-i18n="checkLength">At least 12 characters</li>
+                <li id="checkUpper" data-i18n="checkUpper">Uppercase letters</li>
+                <li id="checkLower" data-i18n="checkLower">Lowercase letters</li>
+                <li id="checkDigit" data-i18n="checkDigit">Numbers</li>
+                <li id="checkSpecial" data-i18n="checkSpecial">Special symbols</li>
+                <li id="checkCommon" data-i18n="checkCommon">Not a common password</li>
+            </ul>
+
+            <div class="insights">
+                <h3 data-i18n="insightsTitle">Why this password is weak</h3>
+                <ul id="insightList"></ul>
+            </div>
+        </section>
+
+        <section class="panel history">
+            <h2 data-i18n="historyTitle">Recent checks</h2>
+            <p class="subtitle" data-i18n="historySubtitle">Saved locally in your browser</p>
+            <ul id="historyList" class="history-list"></ul>
+            <button type="button" class="btn ghost full" id="clearHistory" data-i18n="clearHistoryBtn">Clear history</button>
+        </section>
+    </main>
+    <footer class="footer-note" data-i18n="footerNote">
+        Build for portfolio: UX + security + product thinking.
+    </footer>
     <script src="./ls1.js"></script>
 </body>
 </html>
